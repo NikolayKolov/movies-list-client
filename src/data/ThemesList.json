@@ -1,0 +1,22 @@
+[
+    {
+        "value": "dark",
+        "label": "Dark",
+        "description": "Dark theme, default"
+    },
+    {
+        "value": "light",
+        "label": "Light",
+        "description": "Light theme"
+    },
+    {
+        "value": "pink",
+        "label": "Pink",
+        "description": "Pink theme"
+    },
+    {
+        "value": "lime",
+        "label": "Lime",
+        "description": "Lime theme"
+    } 
+]

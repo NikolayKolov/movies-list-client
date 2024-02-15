@@ -1,0 +1,2197 @@
+/**************************************/
+/* CSS resets start                   */
+/**************************************/
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font: inherit;
+}
+
+/* 
+    Correct the line height in all browsers. 
+    Prevent adjustments of font size after orientation changes in iOS.
+    Add font and font size (rem).
+*/
+html {
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    font-size: 16px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif;
+}
+
+/* Add smooth scrolling */
+html,
+html:focus-within {
+    scroll-behavior: smooth;
+}
+
+/* Default text rendering */
+body {
+    text-rendering: optimizeSpeed;
+}
+
+/* hide side menu for mobile view */
+html,
+body {
+    overflow-x: hidden;
+}
+
+/* Render the main element consistently in IE */
+main {
+    display: block;
+}
+
+/* 
+    Change the font styles in all browsers.
+    Remove the margin in Firefox and Safari.
+*/
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+}
+
+/* Remove list styles (bullets/numbers) */
+ol, ul, menu {
+    list-style: none;
+}
+
+/* Correct the inability to style clickable types in iOS and Safari */
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+    -webkit-appearance: button;
+    appearance: button;
+}
+
+/* Remove the inner border and padding in Firefox */
+button::-moz-focus-inner,
+[type='button']::-moz-focus-inner,
+[type='reset']::-moz-focus-inner,
+[type='submit']::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+}
+
+/* Restore the focus styles unset by the previous rule */
+button:-moz-focusring,
+[type='button']:-moz-focusring,
+[type='reset']:-moz-focusring,
+[type='submit']:-moz-focusring {
+    outline: 1px dotted ButtonText;
+}
+
+/* Correct the padding in Firefox */
+fieldset {
+    padding: 0.35em 0.75em 0.625em;
+}
+
+/*
+    Correct the text wrapping in Edge and IE.
+    Correct the color inheritance from fieldset elements in IE.
+    Remove the padding so developers are not caught out when they zero out fieldset elements in all browsers.
+*/
+legend {
+    box-sizing: border-box;
+    color: inherit;
+    display: table;
+    max-width: 100%;
+    padding: 0;
+    white-space: normal;
+  }
+
+/* Show the overflow in Edge. */
+button,
+input {
+    overflow: visible;
+}
+
+/* Add the correct vertical alignment in Chrome, Firefox, and Opera. */
+progress {
+    vertical-align: baseline;
+}
+
+/* Correct the cursor style of increment and decrement buttons in Chrome. */
+[type='number']::-webkit-inner-spin-button,
+[type='number']::-webkit-outer-spin-button {
+    height: auto;
+}
+
+/* Correct the odd appearance in Chrome and Safari. Correct the outline style in Safari. */
+[type='search'] {
+    -webkit-appearance: textfield;
+    appearance: textfield;
+    outline-offset: -2px;
+}
+
+/* Remove the inner padding in Chrome and Safari on macOS. */
+[type='search']::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+/* Correct the inability to style clickable types in iOS and Safari. Change font properties to inherit in Safari. */
+::-webkit-file-upload-button {
+    -webkit-appearance: button;
+    font: inherit;
+}
+
+/* Add the correct display in Edge, IE 10+, and Firefox. */
+details {
+    display: block;
+}
+
+/* Add the correct display in all browsers. */
+summary {
+    display: list-item;
+}
+
+/* Make images easier to work with */
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+/**************************************/
+/* CSS resets end                     */
+/**************************************/
+
+/**************************************/
+/* Main body start                    */
+/**************************************/
+
+
+/* Load logo font from own server */
+@font-face {
+    font-family: 'Logo Font';
+    src: url('assets/fonts/quartzo-font/QuartzoBold-W9lv.ttf') format('truetype');
+}
+
+/**************************************/
+/* Root element and main variables    */
+/* Themes settings                    */
+/**************************************/
+#root {
+    /* MAIN VARIABLES */
+    /* main body width on desktop */
+    --fullscreen-width: 1280px;
+    /* cannot use in media queries, but keep for now for reference */
+    --breakpoint-mobile: 600px;
+    --footer-height: 4rem;
+
+    /* Z-indexes */
+    /* Splash screen will have the highest possible z-index in the application */
+    --z-index-splash-screen: 10000;
+    --z-index-header: 100;
+    --z-index-hamburger-menu: 20;
+    --z-index-menu-links: 10;
+    --z-index-img-load-overlay: 5;
+    --z-index-modal-overlay: 200;
+    --z-index-modal: 300;
+
+    /* Colors for pulsing circles in loading animation */
+    --splash-screen-loading-circle1-color: #ff414d;
+    --splash-screen-loading-circle2-color: #ff7a00;
+    --splash-screen-loading-circle3-color: #28df99;
+    --splash-screen-loading-circle4-color: #81b214;
+    --splash-screen-loading-circle5-color: #f09ae9;
+
+    /* THEME COLORS */
+    /* main colors */
+    --color-error: #db0b0b;
+    --color-error-RGB: 219, 11, 11;
+    --color-warning: #ffe644;
+    --color-warning-RGB: 255, 230, 68;
+    --color-delete: #ff3232;
+    --star-background: #ffcc00;
+    --star-empty: #c3c3c3;
+    --highlight-background: grey;
+    --desktop-image-width: 480px;
+    --mobile-image-width: 300px;
+    --box-shadow-primary: 0 0 0.25rem 0.25rem var(--secondary-bg-color);
+    --box-shadow-secondary: 0 0 0.125rem 0.125rem var(--main-txt-color);
+    --box-shadow-primary__error: 0 0 3px 2px var(--color-error);
+
+    /* Dark theme (default if no system theme) */
+    --main-bg-color__dark: #181818;
+    --main-bg-color-RGB__dark: 24, 24, 24; /* same as above, but with RGB values */
+    --main-txt-color__dark: #ffffff;
+    --secondary-bg-color__dark: #838383;
+    --action-lnk-color__dark: #0ca702;
+    --action-lnk-color__hover__dark: #03c765;
+    --highlight-background__dark: grey;
+    
+    &[data-theme='dark'] {
+        --main-bg-color: var(--main-bg-color__dark);
+        --main-bg-color-RGB: var(--main-bg-color-RGB__dark);
+        --main-txt-color: var(--main-txt-color__dark);
+        --secondary-bg-color: var(--secondary-bg-color__dark);
+        --action-lnk-color: var(--action-lnk-color__dark);
+        --action-lnk-color__hover: var(--action-lnk-color__hover__dark);
+    }
+
+    /* Light theme */
+    --main-bg-color__light: #f3f3f3;
+    --main-bg-color-RGB__light: 243, 243, 243; /* same as above, but with RGB values */
+    --main-txt-color__light: #181616;
+    --secondary-bg-color__light: #e3e3e3;
+    --action-lnk-color__light: #00e472;
+    --action-lnk-color__hover__light: #03d36b;
+    --highlight-background__light: yellow;
+
+    &[data-theme='light'] {
+        --main-bg-color: var(--main-bg-color__light);
+        --main-bg-color-RGB: var(--main-bg-color-RGB__light);
+        --main-txt-color: var(--main-txt-color__light);
+        --secondary-bg-color: var(--secondary-bg-color__light);
+        --action-lnk-color: var(--action-lnk-color__light);
+        --action-lnk-color__hover: var(--action-lnk-color__hover__light);
+        --highlight-background: var(--highlight-background__light);
+    }
+    
+    /* Pink theme */
+    --main-bg-color__pink: #d91557;
+    --main-bg-color-RGB__pink: 217, 21, 87; /* same as above, but with RGB values */
+    --main-txt-color__pink: #ffffff;
+    --secondary-bg-color__pink: #ed4d82;
+    --action-lnk-color__pink: #1abd0f;
+    --action-lnk-color__hover__pink: #20d413;
+    --color-error__pink: #ffdada;
+    --highlight-background__pink: #fba9b7;
+
+    &[data-theme='pink'] {
+        --main-bg-color: var(--main-bg-color__pink);
+        --main-bg-color-RGB: var(--main-bg-color-RGB__pink);
+        --main-txt-color: var(--main-txt-color__pink);
+        --secondary-bg-color: var(--secondary-bg-color__pink);
+        --action-lnk-color: var(--action-lnk-color__pink);
+        --action-lnk-color__hover: var(--action-lnk-color__hover__pink);
+        --color-error: var(--color-error__pink);
+        --highlight-background: var(--highlight-background__pink);
+    }
+
+    /* Lime theme */
+    --main-bg-color__lime: #d6e35f;
+    --main-bg-color-RGB__lime: 214, 227, 95;
+    --main-txt-color__lime: #101010;
+    --secondary-bg-color__lime: #eaf1af;
+    --action-lnk-color__lime: #14ad35;
+    --action-lnk-color__hover__lime: #14c73b;
+    --star-background__lime: #ccaa00;
+    --highlight-background__lime: #ffffe2;
+
+    &[data-theme='lime'] {
+        --main-bg-color: var(--main-bg-color__lime);
+        --main-bg-color-RGB: var(--main-bg-color-RGB__lime);
+        --main-txt-color: var(--main-txt-color__lime);
+        --secondary-bg-color: var(--secondary-bg-color__lime);
+        --action-lnk-color: var(--action-lnk-color__lime);
+        --action-lnk-color__hover: var(--action-lnk-color__hover__lime);
+        --star-background: var(--star-background__lime);
+        --highlight-background: var(--highlight-background__lime);
+    }
+
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    background-color: var(--main-bg-color);
+    color: var(--main-txt-color);
+    transition: 
+        background-color 0.6s,
+        color 0.6s;
+
+    & main {
+        flex-grow: 1;
+        margin-top: 4rem;
+    }
+}
+
+
+/**************************************/
+/* Splash screen styling              */
+/**************************************/
+
+div.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    /* center splash screen content */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: var(--z-index-splash-screen);
+
+    & div.splash-screen--center {
+        height: 3rem;
+
+        & div.splash-screen--animation {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+
+            &.splash-screen--animation__error {
+                & div {
+                    & span {
+                        background-color: var(--color-error);
+
+                        &.animation__pulse {
+                            animation: none;
+                        }
+                    }
+                }
+            }
+
+            & div {
+                display: inline-block;
+                position: relative;
+                width: 1.5rem;
+                height: 1.5rem;
+                border-radius: 50%;
+
+                & span {
+                    position: absolute;
+                    background-color: inherit;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+
+                    &.animation__pulse {
+                        animation-name: pulse;
+                        animation-duration: 2s;
+                        animation-iteration-count: infinite;
+                        animation-timing-function: ease-out;
+                    }
+                }
+
+                /* give color to the five circles based on their order */
+                &:nth-of-type(1) {
+                    background-color: var(--splash-screen-loading-circle1-color);
+
+                    & span.animation__pulse {
+                        animation-delay: 0.2s;
+                    }
+                }
+
+                &:nth-of-type(2) {
+                    background-color: var(--splash-screen-loading-circle2-color);
+
+                    & span.animation__pulse {
+                        animation-delay: 0.4s;
+                    }
+                }
+
+                &:nth-of-type(3) {
+                    background-color: var(--splash-screen-loading-circle3-color);
+
+                    & span.animation__pulse {
+                        animation-delay: 0.6s;
+                    }
+                }
+
+                &:nth-of-type(4) {
+                    background-color: var(--splash-screen-loading-circle4-color);
+
+                    & span.animation__pulse {
+                        animation-delay: 0.8s;
+                    }
+                }
+
+                &:nth-of-type(5) {
+                    background-color: var(--splash-screen-loading-circle5-color);
+
+                    & span.animation__pulse {
+                        animation-delay: 1s;
+                    }
+                }
+            }
+        }
+
+        & p.splash-screen--message {
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            text-align: center;
+            padding: 0.25rem 1rem;
+
+            &.splash-screen--message__error {
+                color: var(--color-error);
+            }
+        }
+    }
+}
+
+/*
+    Splash screen pulse animation must not be nested, 
+    otherwise it doesn't run on Chrome v 120.0.6099.71
+    with CSS nesting
+*/
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+        transform: scale(0);
+    }
+    60% {
+        opacity: 0;
+        transform: scale(3);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(3);
+    }
+}
+
+/**************************************/
+/* Header is always visible and       */
+/* shrinks slightly on scroll         */
+/**************************************/
+header {
+    position: fixed;
+    height: 4rem;
+    width: 100vw;
+    background-color: rgba(var(--main-bg-color-RGB), 0.8);
+    display: flex;
+    justify-content: center;
+    z-index: var(--z-index-header);
+    transition: all 0.2s;
+
+    &.header__small {
+        height: 2.875rem;
+        border-bottom: 1px solid var(--main-txt-color);
+        box-shadow: 0 -3px 9px 3px var(--main-txt-color);
+        backdrop-filter: blur(0.5rem);
+
+        & .header--container .header--logo {
+            font-size: 1.75rem;
+
+            @media screen and (width <= 600px) { /* --breakpoint-mobile */
+                font-size: 1.5rem;
+            }
+        }
+
+        & .header--link__special {
+            padding: 0.5rem 1.25rem;
+        }
+    }
+
+    &.header__small ~ main {
+        margin-top: 3rem;
+    }
+
+    /* Styles for the main container of the header */
+    & .header--container {
+        padding: 0 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-grow: 1;
+        height: inherit;
+        max-width: var(--fullscreen-width);
+
+        /* Logo style */
+        & .header--logo {
+            font-family: 'Logo Font', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 2rem;
+            text-transform: uppercase;
+
+            &:hover {
+                filter: drop-shadow(0 0 0.5rem var(--secondary-bg-color));
+                cursor: pointer;
+            }
+        }
+
+        @media screen and (width <= 600px) { /* --breakpoint-mobile */
+            padding: 0 0.5rem;
+    
+            & .header--logo {
+                font-size: 1.75rem;
+            }
+        }
+
+        & .header--container__right {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Header theme switcher */
+        & div.theme--container__relative {
+            position: relative;
+            min-width: 5rem;
+            min-height: 1.75rem;
+            margin-right: 1rem;
+
+            @media screen and (width <= 600px) { /* --breakpoint-mobile */
+                margin-right: 0.5rem;
+            }
+
+            /* The container for all the theme options available */
+            & div.theme--container__absolute {
+                position: absolute;
+                top: 0;
+                left: 0;
+                min-width: 100%;
+                min-height: 100%;
+
+                & div.theme-select {
+                    display: flex;
+                    min-height: 100%;
+                    min-width: 100%;
+
+                    & div.theme-select--content {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.25rem;
+                        max-height: 1.75rem;
+                        padding-bottom: 0.125rem;
+                        overflow: hidden;
+                        transition: max-height 0.5s ease-out;
+                        border: 2px solid var(--main-txt-color);
+                        border-radius: 0.875rem;
+                        padding-inline: 0.125rem;
+                        background-color: var(--main-bg-color);
+
+                        /*
+                            This places the selected theme as first and 
+                            makes it visible even on a closed theme selector
+                            Slightly alter style for radio button
+                        */
+                        & div.content--elem__first {
+                            order: -1;
+
+                            & input[type='radio'] {
+                                margin-left: 0.25rem;
+                            }
+                        }
+
+                        & > div {
+                            min-width: 4.5rem;
+                            height: 1.5rem;
+                            border-radius: 0.75rem;
+
+                            & > label {
+                                display: flex;
+                                align-items: center;
+
+                                & > span {
+                                    margin-left: 0.5rem;
+                                }
+                            }
+
+                            /* Custom input radio appearance */
+                            & input[type='radio'] {
+                                appearance: none;
+                                width: 0.75rem;
+                                height: 0.75rem;
+                                border-radius: 50%;
+                                margin-left: 0.375rem;
+                                outline-offset: -1px;
+
+                                /* 
+                                    If it is not checked, it is not the current theme,
+                                    so style differently
+                                */
+                                &:checked {
+                                    outline-offset: unset;
+                                }
+
+                                &:not(:checked) {
+                                    transform: scale(0.75);
+                                }
+                            }
+
+                            /* Different styles for each theme selector */
+                            &.theme__dark {
+                                background-color: var(--main-bg-color__dark);
+                                color: var(--main-txt-color__dark);
+
+                                & input[type='radio'] {
+                                    outline: 2px solid var(--main-txt-color__dark);
+                                    background-color: var(--main-txt-color__dark);
+                                    transition: all 0.3s ease;
+
+                                    &:checked {
+                                        background-color: var(--main-bg-color__dark);
+                                    }
+                                }
+
+                                /* apply hover animation if theme is not set (selected) */
+                                &:hover {
+                                    & input[type='radio']:not(:checked) {
+                                        transform: scale(1.2);
+                                        background-color: var(--main-bg-color__dark);
+                                    }
+                                }
+                            }
+
+                            &.theme__light {
+                                background-color: var(--main-bg-color__light);
+                                color: var(--main-txt-color__light);
+
+                                & input[type='radio'] {
+                                    outline: 2px solid var(--main-txt-color__light);
+                                    background-color: var(--main-txt-color__light);
+                                    transition: all 0.3s ease;
+
+                                    &:checked {
+                                        background-color: var(--main-bg-color__light);
+                                    }
+                                }
+
+                                &:hover {
+                                    & input[type='radio']:not(:checked) {
+                                        transform: scale(1.2);
+                                        background-color: var(--main-bg-color__light);
+                                    }
+                                }
+                            }
+
+                            &.theme__pink {
+                                background-color: var(--main-bg-color__pink);
+                                color: var(--main-txt-color__pink);
+
+                                & input[type='radio'] {
+                                    outline: 2px solid var(--main-txt-color__pink);
+                                    background-color: var(--main-txt-color__pink);
+                                    transition: all 0.3s ease;
+
+                                    &:checked {
+                                        background-color: var(--main-bg-color__pink);
+                                    }
+                                }
+
+                                &:hover {
+                                    & input[type='radio']:not(:checked) {
+                                        transform: scale(1.2);
+                                        background-color: var(--main-bg-color__pink);
+                                    }
+                                }
+                            }
+
+                            &.theme__lime {
+                                background-color: var(--main-bg-color__lime);
+                                color: var(--main-txt-color__lime);
+
+                                & input[type='radio'] {
+                                    outline: 2px solid var(--main-txt-color__lime);
+                                    background-color: var(--main-txt-color__lime);
+                                    transition: all 0.3s ease;
+
+                                    &:checked {
+                                        background-color: var(--main-bg-color__lime);
+                                    }
+                                }
+
+                                &:hover {
+                                    & input[type='radio']:not(:checked) {
+                                        transform: scale(1.2);
+                                        background-color: var(--main-bg-color__lime);
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    /* Open theme selector to see all themes */
+                    &.theme-select__opened {
+                        & div.theme-select--content {
+                            max-height: 100%;
+                        }
+                    }
+                }
+            }
+        }
+        
+
+        /* Style the mobile hamburger button */
+        & label.hamburger-button {
+            @media screen and (width <= 600px) { /* --breakpoint-mobile */
+                display: inline-block;
+                width: 2rem;
+                height: 2rem;
+            }
+
+            /* hidden on larger screens */
+            display: none;
+
+            & .hamburger-icon {
+                @media screen and (width <= 600px) { /* --breakpoint-mobile */
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+                    z-index: var(--z-index-hamburger-menu);
+                    width: inherit;
+                    height: inherit;
+                }
+    
+                /* The middle line of the hamburger */
+                & .hamburger--line {
+                    display: block;
+                    position: relative;
+                    background-color: var(--main-txt-color);
+                    width: 1.5rem;
+                    height: 0.25rem;
+                    border-radius: 0.125rem;
+    
+                    &::after,
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        background-color: var(--main-txt-color);
+                        border-radius: 0.125rem;
+                    }
+    
+                    /* the lower line of the hamburger */
+                    &::after {
+                        transform: translateY(0.5rem);
+                    }
+
+                    /* the upper line of the hamburger */
+                    &::before {
+                        transform: translateY(-0.5rem);
+                    }
+                }
+            }
+        }
+
+        /* the hidden checkbox has to be here in order for the CSS sibling selector to work */
+        & input[type="checkbox"].hamburger-button--chbox {
+            display: none;
+
+            /* slide the mobile menu from the right */
+            &:checked ~ ul {
+                opacity: 1;
+                transform: translateX(0);
+                transition-delay: 0.0s;
+
+                & li {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+
+            /* CSS only responsive mobile menu, no JavaScript */
+            &:checked ~ label.hamburger-button > .hamburger-icon > .hamburger--line {
+                background-color: transparent;
+                transform: translateX(-2rem);
+
+                &::after {
+                    transform: rotate(-45deg) translate(1.5rem, 1.5rem);
+                }
+
+                &::before {
+                    transform: rotate(45deg) translate(1.5rem, -1.5rem);
+                }
+            }
+        }
+
+        /* The hamburger menu icon with animations */
+        & .hamburger-icon {
+            @media screen and (width <= 600px) { /* --breakpoint-mobile */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                z-index: var(--z-index-hamburger-menu);
+                width: 2rem;
+                height: 2rem;
+            }
+
+            display: none;
+
+            & .hamburger--line {
+                display: block;
+                position: relative;
+                background-color: var(--main-txt-color);
+                width: 1.5rem;
+                height: 0.25rem;
+                border-radius: 0.125rem;
+                transition: all 0.2s;
+
+                &::after,
+                &::before {
+                    content: '';
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    background-color: inherit;
+                    border-radius: 0.125rem;
+                    transition: all 0.2s;
+                }
+
+                &::after {
+                    transform: translateY(0.5rem);
+                }
+
+                &::before {
+                    transform: translateY(-0.5rem);
+                }
+            }
+        }
+
+        /* Menu links for desktop and mobile */
+        /* Basic styles of links */
+        & ul {
+            display: flex;
+            align-items: center;
+
+            & li a {
+                text-transform: uppercase;
+                color: var(--main-txt-color);
+                position: relative;
+
+                &.header--link__normal::after {
+                    content: '';
+                    position: absolute;
+                    inset: auto auto 0 0;
+                    width: 0px;
+                    height: 2px;
+                    background-color: var(--main-txt-color);
+                    transition: width 0.3s ease-out;
+                }
+
+                &.header--link__normal:hover::after {
+                    width: 100%;
+                }
+
+            }
+
+            /* Mobile view of links not opened */
+            @media screen and (width <= 600px) { /* --breakpoint-mobile */
+                flex-direction: column;
+                justify-content: space-evenly;
+                align-items: center;
+                padding: 20vh 0;
+                position: absolute;
+                inset: 0 0 auto auto;
+                transform: translateX(100%);
+                width: 100vw;
+                height: 100vh;
+                background-color: var(--secondary-bg-color);
+                opacity: 0;
+                font-size: 2rem;
+                z-index: var(--z-index-menu-links);
+                transition: all 0.3s;
+                transition-delay: 0.4s;
+
+                & li {
+                    opacity: 0;
+                    transform: translateX(100%);
+                    width: 100%;
+                    text-align: center;
+                    /* create bounce effect with cubic-bezier */
+                    transition:
+                        opacity 1s,
+                        transform 0.5s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+
+                    /* create staggered animation for mobile links */
+                    &:nth-of-type(1) {
+                        transition-delay: 0.1s;
+                    }
+    
+                    &:nth-of-type(2) {
+                        transition-delay: 0.2s;
+                    }
+    
+                    &:nth-of-type(3) {
+                        transition-delay: 0.3s;
+                    }
+    
+                    &:nth-of-type(4) {
+                        transition-delay: 0.4s;
+                    }
+
+                    & a {
+                        padding: 0 0.5rem 0.25rem;
+
+                        &.header--link__special {
+                            color: var(--action-lnk-color__hover);
+        
+                            &:hover {
+                                color: var(--action-lnk-color);
+                            }
+                        }
+                    }
+                }
+            }
+
+            /* desktop view of the menu */
+            @media screen and (width > 600px) { /* --breakpoint-mobile */
+                gap: 0.5rem;
+
+                & li a {
+                    display: inline-block;
+                    padding: 0.625rem 1.25rem;
+                    position: relative;
+
+                    &.header--link__normal.header--link__selected {
+                        background-color: var(--secondary-bg-color);
+
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            inset: auto auto 0 0;
+                            width: 100%;
+                            height: 2px;
+                            background-color: var(--main-txt-color);
+                        }
+                    }
+
+                    /* Special style for action links like login/logout */
+                    &.header--link__special {
+                        border-radius: 0.25rem;
+                        color: var(--main-txt-color);
+                        background-color: var(--action-lnk-color);
+    
+                        &:hover {
+                            background-color: var(--action-lnk-color__hover);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+main {
+    & > * {
+        margin-inline: auto;
+        padding-inline: 1.5rem;
+        max-width: var(--fullscreen-width);
+
+        @media screen and (width <= 600px) { /* --breakpoint-mobile */
+            padding-inline: 0.5rem;
+            max-width: 95vw;
+        }
+    }
+
+    & .not-found {
+        margin-top: 2rem;
+        height: 50vh;
+        max-height: 50vh;
+        line-height: 50vh;
+        text-align: center;
+        font-size: 3rem;
+        font-weight: bold;
+    }
+
+    /* The movies list as a grid */
+    & div.movies-grid {
+        display: grid;
+        place-items: center;
+        /*
+            auto-fill creates as many implicit columns as needed and doesn't resize
+            the movie cards when the list length changes, like in a search
+        */
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+
+        @media screen and (width <= 600px) { /* --breakpoint-mobile */
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+
+        /*
+            The end of the currently loaded movies list
+            Used by intersection observer for infinite scroll
+        */
+        & div.movies-grid--end {
+            height: 0px;
+        }
+
+        /* if the movie grid has one element hovered over, apply this style to the rest of the grid elements */
+        &:has(article.movie-card:hover) article.movie-card:not(:hover) {
+            scale: 0.95;
+            transition: scale 0.3s;
+
+            & div.movie-card--image-container,
+            & div.movie-info {
+                opacity: 0.6;
+                transition: opacity 0.3s;
+            }
+        }
+
+        /* A movie card in the movies list grid */
+        & > article.movie-card {
+            cursor: pointer;
+            width: 100%;
+            /* set max-width of 230px to display a maximum of 5 per grid row */
+            max-width: 240px;
+            border: 1px solid var(--secondary-bg-color);
+            border-radius: 1rem;
+            overflow: hidden;
+            transition:
+                box-shadow 0.3s,
+                scale 0.3s 0.1s;
+            opacity: 0;
+            transform: translateY(-15px);
+            animation-name: movie-appear;
+            animation-duration: 0.3s;
+            animation-timing-function: ease-out;
+            animation-fill-mode: forwards;
+            position: relative;
+
+            /* Add a hover effect to each movie card */
+            &:hover {
+                box-shadow: var(--box-shadow-primary);
+
+                & > div.movie-card--image-container:not(.movie-card--image-container__loading) {
+                    & > img.movie-card--image {
+                        transform: scale(1.1);
+                    }
+                }
+
+                & div.movie-card--actions {
+                    opacity: 0.95;
+                }
+            }
+
+            div.movie-card--actions {
+                position: absolute;
+                top: 0.5rem;
+                right: 0.5rem;
+                width: 2rem;
+                height: 2rem;
+                border: 1px solid var(--main-txt-color);
+                border-radius: 0.25rem;
+                background-color: var(--main-bg-color);
+                opacity: 0.7;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: box-shadow 0.2s;
+
+                &:hover {
+                    box-shadow: 0 0 6px 1px var(--main-txt-color);
+                }
+
+                & svg {
+                    width: 80%;
+                    height: 80%;
+                    color: var(--main-txt-color);
+                }
+            }
+            
+            & div.actions-container {
+                display: flex;
+                position: absolute;
+                top: 2.5rem;
+                right: 0.5rem;
+
+                & div.actions-content {
+                    max-height: 0;
+                    overflow: hidden;
+                    transition: all 0.3s ease-out;
+                }
+
+                &.actions-container__open {
+                    & div.actions-content {
+                        max-height: 100%;
+                    }
+                }
+
+                & div.movie-actions {
+                    width: 6rem;
+                    border-radius: 0.25rem;
+                    border: 1px solid var(--main-txt-color);
+                    background-color: var(--main-bg-color);
+                    font-weight: bold;
+
+                    & p {
+                        padding-inline: 0.5rem;
+                        padding-block: 0.25rem;
+                        transition: all 0.2s;
+
+                        &:hover {
+                            background-color: var(--secondary-bg-color);
+                        }
+
+                        &:first-child {
+                            border-radius: 0.25rem 0.25rem 0 0;
+                        }
+
+                        &:last-child {
+                            border-radius: 0 0 0.25rem 0.25rem;
+                        }
+                    }
+                }
+            }
+
+            /* Loading animation for the image in the movie card */
+            & > div.movie-card--image-container {
+                aspect-ratio: 1 / 1.5;
+                overflow: hidden;
+                transition:
+                    opacity 0.3s 0.1s;
+
+                &::before {
+                    content: none;
+                    animation: none;
+                }
+
+                &.movie-card--image-container__loading {
+                    position: relative;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+
+                    &::before {
+                        position: absolute;
+                        inset: 0;
+                        width: 100%;
+                        height: 100%;
+                        content: '';
+                        opacity: 0.9;
+                        z-index: var(--z-index-img-load-overlay);
+                        background-color: var(--secondary-bg-color);
+                        background: linear-gradient(
+                            100deg,
+                            rgba(255, 255, 255, 0) 40%,
+                            rgba(255, 255, 255, .5) 50%,
+                            rgba(255, 255, 255, 0) 60%
+                        ) var(--secondary-bg-color);
+                        background-size: 200% 100%;
+                        background-position-x: 180%;
+                        animation: load-img 1s linear infinite;
+                    }
+
+                    /* Don't show loaded or default image during the loading phase */ 
+                    & > img.movie-card--image,
+                    & > img.movie-card--image__missing {
+                        opacity: 0;
+                    }
+                }
+
+                /* Styles for loaded image/default image */
+                & > img.movie-card--image,
+                & > img.movie-card--image__missing {
+                    aspect-ratio: 1 / 1.5;
+                    object-fit: cover;
+                    opacity: 1;
+                    transition: all 0.3s;
+                }
+            }
+
+            & .movie-info {
+                height: 7.5rem;
+                margin-inline: 0.5rem;
+                transition:
+                    opacity 0.3s 0.1s;
+            }
+
+            & p.movie-title {
+                font-size: 1.5rem;
+                font-weight: bold;
+                /* display only 2 lines of movie title */
+                -webkit-line-clamp: 2;
+                line-clamp: 2;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+
+                @media screen and (width <= 600px) { /* --breakpoint-mobile */
+                    font-size: 1.25rem;
+                }
+
+                & strong {
+                    background-color: var(--highlight-background);
+                }
+            }
+
+            /* Movie rating as 10 stars */
+            & p.movie-rating {
+                /*
+                    The "--rating value must be set in the 
+                    react component using the style property
+                */
+                --percent: calc(var(--rating) / 10 * 100%);
+                font-family: Times;
+                font-size: 1.25rem;
+
+                &::before {
+                    content: '★★★★★★★★★★';
+                    letter-spacing: 0px;
+                    background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-empty) var(--percent));
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
+
+                @media screen and (width <= 600px) { /* --breakpoint-mobile */
+                    font-size: 1.125rem;
+                }
+            }
+        }
+
+        @media screen and (width <= 600px) { /* --breakpoint-mobile */
+            padding-inline: 0.5rem;
+        }
+    }
+
+    /* Movies refresh button and prompt shown on movies grid */
+    & div.movies-refresh {
+        position: fixed;
+        z-index: 20;
+        left: 50%;
+        top: -2.5rem;
+        height: 2.5rem;
+        padding-inline: 0.25rem 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--main-txt-color);
+        color: var(--main-bg-color);
+        font-weight: bold;
+        transform: translateX(-50%);
+        border: 2px solid var(--secondary-bg-color);
+        border-radius: 0.5rem;
+        transition: top 0.3s cubic-bezier(1,-0.54,.01,1.54);
+
+        &.movies-refresh__show {
+            top: 8.5rem;
+        }
+
+        &:hover {
+            box-shadow: var(--box-shadow-primary);
+        }
+
+        & svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-left: 0.25rem;
+            margin-right: 0.5rem;
+        }
+    }
+
+    & div.movie-filters--container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+        position: relative;
+
+        & div.movie-filters--expand-container {
+            position: relative;
+            width: clamp(50vw, 40rem, 90vw);
+
+            /* search bar */
+            & input[type='search'].movies-search {
+                width: 100%;
+                height: 2.5rem;
+                line-height: 1rem;
+                border: 2px solid var(--secondary-bg-color);
+                border-radius: 0.25rem;
+                padding-left: 2rem;
+                padding-right: 0.5rem;
+                padding-block: 0.375rem;
+                outline: transparent;
+                transition: all 0.25s;
+                /* The search icon at the start of the search bar */
+                background-image: url('/src/assets/icons/search.svg');
+                background-position-x: 0.75rem;
+                background-position-y: center;
+                background-repeat: no-repeat;
+                background-size: 1rem 1rem;
+    
+    
+                &:active,
+                &:focus,
+                &:focus-within {
+                    outline: 2px solid var(--secondary-bg-color);
+                    box-shadow: var(--box-shadow-primary);
+                }
+    
+                &.movies-search__filter {
+                    padding-right: 3rem;
+                }
+            }
+
+            /* filter icon */
+            & div.movies-search--filter-icon {
+                position: absolute;
+                right: 0.5rem;
+                top: 0.5rem;
+                width: 1.5rem;
+                height: 1.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                margin-left: -2rem;
+                transition: all 0.2s;
+    
+                &:hover {
+                    background-color: var(--secondary-bg-color);
+                }
+    
+                & img {
+                    width: 1rem;
+                    height: 1rem;
+                }
+
+                &.movies-search--filter-icon__nofitication::before {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    width: 0.375rem;
+                    height: 0.375rem;
+                    border-radius: 50%;
+                    background-color: #db0b0b;
+                }
+            }
+        }
+
+
+        & div.movie-filters--section {
+            position: absolute;
+            z-index: var(--z-index-hamburger-menu);
+            top: 100%;
+            left: 0;
+            width: 100%;
+            margin-top: 0.25rem;
+            background-color: var(--main-bg-color);
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: all 0.2s;
+
+            &.movie-filters--section__open {
+                grid-template-rows: 1fr;
+                border-radius: 0.25rem;
+                box-shadow: 0 0 0.25rem 0.125rem var(--main-txt-color);
+            }
+
+            & .movie-filters--section-inner {
+                overflow: hidden;
+            }
+
+            & .movies-filters--select {
+                margin: 0.5rem 0.25rem;
+                padding-inline: 0.5rem;
+                display: flex;
+                gap: 0.5rem;
+                flex-direction: column;
+
+                & .movies-filters--controls {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: start;
+                    align-items: center;
+                    gap: 0.5rem;
+
+                    & label.movies-filters--control,
+                    & div.movies-filters--control {
+                        height: 2rem;
+                        display: flex;
+                        align-items: center;
+                        padding-inline: 0.375rem 0.5rem;
+                        border-radius: 0.5rem;
+                        border: 2px solid var(--main-txt-color);
+                        transition: all 0.3s;
+
+                        &:hover {
+                            box-shadow: 0 0 5px 1px var(--main-txt-color);
+
+                            & input[type="checkbox"]:not(:checked)::before {
+                                transform: scale(0.75);
+                                opacity: 0.6;
+                            }
+                        }
+
+                        &.movies-filters--control__default {
+                            border-width: 3px;
+                            font-weight: bold;
+                            margin-right: 0.5rem;
+                        }
+                    }
+
+                    & label.movies-filters--control {
+                        & input[type="checkbox"] {
+                            appearance: none;
+                            width: 1.125rem;
+                            height: 1.125rem;
+                            border: 0.125rem solid var(--main-txt-color);
+                            border-radius: 0.25rem;
+                            margin-right: 0.375rem;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
+                            &::before {
+                                content: '';
+                                display: block;
+                                width: 0.5rem;
+                                height: 0.5rem;
+                                transform: scale(0);
+                                transition: 0.1s transform ease-in-out;
+                                box-shadow: inset 1rem 1rem var(--main-txt-color);
+                            }
+
+                            &:checked::before {
+                                transform: scale(1);
+                            }
+                        }
+                    }
+
+                    & div.movies-filters--control {
+                        &:hover {
+                            & span {
+                                filter: drop-shadow(0 0 1px var(--main-txt-color));
+                            }
+                        }
+
+                        &:not([data-value="no"]) {
+                            outline-width: 1px;
+                            outline-color: var(--main-txt-color);
+                            outline-style: solid;
+                            outline-offset: -5px;
+                        }
+
+                        & span {
+                            height: 1.125rem;
+                            width: 1.125rem;
+                            display: inline-block;
+                            margin-top: -0.125rem;
+                            pointer-events: none;
+
+                            & p:first-child {
+                                position: relative;
+                                height: 50%;
+
+                                &::before {
+                                    content: '';
+                                    position: absolute;
+                                    left: 33%;
+                                    top: 0.25rem;
+                                    width: 0.5rem;
+                                    height: 0.5rem;
+                                    border-left: 2px solid var(--main-txt-color);
+                                    border-top: 2px solid var(--main-txt-color);
+                                    transform: rotate(45deg);
+                                }
+                            }
+
+                            & p:last-child {
+                                position: relative;
+                                height: 50%;
+
+                                &::before {
+                                    content: '';
+                                    position: absolute;
+                                    left: 33%;
+                                    top: 0;
+                                    width: 0.5rem;
+                                    height: 0.5rem;
+                                    border-left: 2px solid var(--main-txt-color);
+                                    border-top: 2px solid var(--main-txt-color);
+                                    transform: rotate(225deg);
+                                }
+                            }
+                        }
+
+                        &[data-value="no"] {
+                            & span {
+                                opacity: 0.5;
+                            }
+                        }
+
+                        &[data-value="asc"]:not(.movies-filters--control__default) {
+                            & span {
+                                opacity: 1;
+
+                                & p:first-child {
+                                    opacity: 1;
+                                }
+
+                                & p:last-child {
+                                    opacity: 0.5;
+                                }
+                            }
+                        }
+
+                        &.movies-filters--control__default[data-value="asc"] {
+                            & span {
+                                opacity: 1;
+                            }
+                        }
+
+                        &[data-value="desc"] {
+                            & span {
+                                opacity: 1;
+
+                                & p:first-child {
+                                    opacity: 0.5;
+                                }
+
+                                & p:last-child {
+                                    opacity: 1;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    /* Movie container for individual movie page */
+    & div.movie-container {
+        display: flex;
+        min-height: 80vh;
+        gap: 3rem;
+        margin-top: 3rem;
+
+        /* hide background on wider screens */
+        & div.image-container__mobile {
+            background-size: 0%;
+
+            & div.image-container--background {
+                background-size: 0%;
+            }
+        }
+
+        @media screen and (width <= 1000px) {
+            flex-direction: column;
+
+            & div.image-container__mobile {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                overflow: hidden;
+                
+                &::before {
+                    content: '';
+                    z-index: 4;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 20%;
+                    width: 100%;
+                    background: linear-gradient(to bottom, rgb(var(--main-bg-color-RGB)), 50%, rgba(var(--main-bg-color-RGB), 0));
+                }
+
+                &::after {
+                    content: '';
+                    z-index: 4;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    height: 30%;
+                    width: 100%;
+                    background: linear-gradient(to top, rgb(var(--main-bg-color-RGB)), 90%, rgba(var(--main-bg-color-RGB), 0));
+                }
+
+                & div.image-container--background {
+                    position: absolute;
+                    z-index: 3;
+                    top: 0;
+                    left: 0;
+                    height: 100%;
+                    width: 100%;
+                    background-color: rgba(var(--main-bg-color-RGB), 0.9);
+                    background-blend-mode: overlay;
+                    background-repeat: repeat-x;
+                    background-size: contain;
+                    filter: blur(0.5rem);
+                }
+
+                & div.image-container {
+                    min-width: calc(var(--mobile-image-width) - 10px); /* the width of the image */
+                    max-width: calc(var(--mobile-image-width) - 10px);
+                    margin-block: 5px;
+                }
+            }
+        }
+
+        & div.image-container {
+            min-width: var(--desktop-image-width); /* the width of the image */
+            max-width: var(--desktop-image-width);
+            height: fit-content;
+            position: relative;
+            overflow-y: hidden;
+            z-index: var(--z-index-img-load-overlay);
+            border-radius: 0.5rem;
+            border: 1px solid var(--secondary-bg-color);
+
+            &:hover {
+                box-shadow: var(--box-shadow-primary);
+            }
+
+            &.image-container__link {
+                & img {
+                    cursor: pointer;
+                }
+
+                & p {
+                    display: block;
+                }
+
+                &:hover {
+                    & p {
+                        transform: translateY(-100%);
+                    }
+
+                    @media screen and (width <= 600px) {
+                        & p {
+                            font-size: 1rem;
+                        }
+                    }
+                }
+            }            
+
+            & p {
+                position: absolute;
+                display: none;
+                bottom: -3rem;
+                left: 0;
+                width: 100%;
+                height: 3rem;
+                background-color: rgba(var(--main-bg-color-RGB), 0.9);
+                line-height: 3rem;
+                font-size: 1.25rem;
+                text-align: center;
+                transition: all 0.3s;
+            }
+        }
+
+        & div.movie-detail {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+
+            @media screen and (width <= 1000px) {
+                font-size: 1.25rem;
+            }
+
+            &:has(p.movie-title) {
+                font-size: 2.5rem;
+                font-weight: bold;
+                line-height: 2.5rem;
+                margin-bottom: 1.5rem;
+
+                @media screen and (width <= 1000px) {
+                    font-size: 2rem;
+                    line-height: 2rem;
+                    margin-bottom: 1.25rem;
+                }
+            }
+
+            & p.movie-detail-name {
+                min-width: 10rem;
+                line-height: 1.25rem
+            }
+
+            & p:nth-child(2) {
+                font-size: 2rem;
+                font-weight: bold;
+
+                @media screen and (width <= 1000px) {
+                    font-size: 1.5rem;
+                }
+            }
+
+            & p {
+                & sup {
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+
+    & form.movie-form {
+        margin-block: 2rem;
+
+        & div.form-row {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1.5rem;
+
+            & label {
+                font-size: 1.25rem;
+                margin-bottom: 0.25rem;
+
+                &:has(+input:disabled),
+                &:has(+div.movie-form--input-poster > input:disabled) {
+                    opacity: 0.7;
+                }
+            }
+
+            & input {
+                font-size: 1.5rem;
+                line-height: 2.75rem;
+                border: 2px solid var(--secondary-bg-color);
+                border-radius: 0.25rem;
+                outline: transparent;
+                padding-left: 0.5rem;
+                transition: all 0.25s;
+
+                &:active,
+                &:focus,
+                &:focus-within {
+                    outline: 2px solid var(--secondary-bg-color);
+                    box-shadow: var(--box-shadow-primary);
+                }
+
+                &:disabled {
+                    opacity: 0.7;
+                }
+
+                /* Hide input number arrows */
+                /* For Chrome & Safari */
+                &[type='number'].hide-arrows::-webkit-inner-spin-button {
+                    display: none;
+                }
+
+                /* For Firefox */
+                &[type='number'].hide-arrows {
+                    -moz-appearance: textfield;
+                    appearance: textfield;
+                }
+
+                &[type='file'] {
+                    display: none;
+                }
+            }
+
+            & div.movie-form--input-poster {
+                font-size: 1.5rem;
+                border: 2px solid var(--secondary-bg-color);
+                border-radius: 0.25rem;
+                outline: transparent;
+                padding-inline: 0.5rem;
+                padding-block: 1rem 0.5rem;
+                transition: all 0.25s;
+
+                &:active,
+                &:focus,
+                &:focus-within {
+                    outline: 2px solid var(--secondary-bg-color);
+                    box-shadow: var(--box-shadow-primary);
+                }
+
+                &:has(input:disabled) {
+                    opacity: 0.7;
+                }
+
+                img.movie-form--preview-poster {
+                    border: 1px solid var(--main-txt-color);
+                    width: min(100%, 490px);
+                    padding: 5px;
+                    border-radius: 5px;
+                    transition: all 0.2s;
+                    margin-top: 1rem;
+
+                    &:hover {
+                        box-shadow: var(--box-shadow-secondary);
+                    }
+                }
+
+                & div.input-poster--img-buttons {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                }
+
+                & label {
+                    margin-bottom: 0.5rem;
+                    border-radius: 0.5rem;
+                    border: 2px solid var(--secondary-bg-color);
+                    padding: 0.5rem 1rem;
+                    color: var(--main-txt-color);
+                    background-color: var(--secondary-bg-color);
+                    outline: transparent;
+    
+                    &:hover,
+                    &:active,
+                    &:focus,
+                    &:focus-within {
+                        box-shadow: var(--box-shadow-secondary);
+                    }
+
+                    &[data-disabled="true"] {
+                        opacity: 0.7;
+                        cursor: not-allowed;
+                    }
+                }
+            }
+
+            & p.form-row--error {
+                font-size: 1rem;
+                font-weight: bold;
+                display: none;
+            }
+
+            &.form-row__error {
+                & input {
+                    border-color: var(--color-error);
+                    &:active,
+                    &:focus,
+                    &:focus-within {
+                        outline-color: transparent;
+                        box-shadow: var(--box-shadow-primary__error);
+                    }
+                }
+
+                p.form-row--error {
+                    display: block;
+                    margin-top: 0.5rem;
+                    color: var(--color-error);
+                }
+            }
+        }
+
+        & div.form-row--actions {
+            display: flex;
+            gap: 1rem;
+
+            & button {
+                text-transform: uppercase;
+                height: 2.5rem;
+                border-radius: 0.5rem;
+                border: 2px solid var(--secondary-bg-color);
+                padding: 0.5rem 1rem;
+                color: var(--main-txt-color);
+                background-color: var(--secondary-bg-color);
+                outline: transparent;
+
+                &:hover,
+                &:active,
+                &:focus,
+                &:focus-within {
+                    box-shadow: var(--box-shadow-secondary);
+                }
+
+                &:disabled {
+                    opacity: 0.6;
+                }
+            }
+        }
+
+        & div.movie-form--status {
+            height: 3.5rem;
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            padding-left: 1rem;
+            display: flex;
+            align-items: center;
+            border-radius: 0.5rem;
+
+            &.movie-form--status__success {
+                border: 2px solid var(--action-lnk-color__hover);
+                background-color: var(--action-lnk-color);
+            }
+
+            &.movie-form--status__error {
+                border: 2px solid var(--color-error);
+                background-color: rgba(var(--color-error-RGB), 0.6);
+            }
+
+            &.movie-form--status__loading {
+                border: 2px solid var(--color-warning);
+                background-color: rgba(var(--color-warning-RGB), 0.6);
+
+                & span.movie-form--status-ellipsis {
+                    display: inline;
+
+                    &::after {
+                        content: '';
+                        animation: loading-ellipsis 1s infinite;
+                    }
+                }
+            }
+
+            & span {
+                line-height: 1.5rem;
+            }
+
+            span.movie-form--status-ellipsis {
+                display: none;
+                animation: none;
+            }
+        }
+    }
+}
+
+/* Scroll to top button */
+#root {
+    & div.scroll-to-top {
+        position: fixed;
+        bottom: -100%;
+        right: 0.5rem;
+        z-index: 500;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 1rem;
+        background-color: var(--secondary-bg-color);
+        transition: bottom 0.3s cubic-bezier(1,-0.54,.01,1.54);
+
+        /* Uward pointing arrow inside button */
+        &::before {
+            content: '';
+            position: absolute;
+            top: 33%;
+            left: 33%;
+            width: 33%;
+            aspect-ratio: 1 / 1;
+            transform: translateY(20%) rotate(45deg);
+            border-left: 5px solid var(--main-txt-color);
+            border-top: 5px solid var(--main-txt-color);
+        }
+
+        &.scroll-to-top__show {
+            bottom: calc(var(--footer-height) + 2rem);
+        }
+    }
+}
+
+/* Modal */
+#root {
+    div.modal--overlay {
+        position: fixed;
+        display: block;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 0;
+        background-color: rgba(var(--main-bg-color-RGB), 0.7);
+        z-index: var(--z-index-modal-overlay);
+        transition: all 0.2s ease-out;
+
+        &.modal__open {
+            height: 100vh;
+        }
+    }
+
+    div.modal {
+        position: fixed;
+        top: -300px;
+        left: 50%;
+        width: min(80vw, 600px);
+        max-height: 400px;
+        padding: 0;
+        background-color: var(--main-bg-color);
+        border-radius: 0.5rem;
+        border: 2px solid var(--main-txt-color);
+        z-index: var(--z-index-modal);
+        transform: translateX(-50%);
+        transition: all 0.3s cubic-bezier(0.215, 0.610, 0.355, 1.000);
+
+        &.modal__open {
+            top: 30vh;
+        }
+
+        &.modal__warning {
+            background-color: var(--color-delete);
+        }
+
+        &:hover {
+            box-shadow: var(--box-shadow-secondary);
+        }
+
+        & h1 {
+            font-size: 1.5rem;
+            padding-inline: 0.5rem;
+            padding-block: 0.25rem;
+            border-bottom: 1px solid var(--main-txt-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            & svg {
+                width: 1.25rem;
+                height: 1.25rem;
+                margin-left: 0.25rem;
+                margin-right: 0.5rem;
+            }
+        }
+    }
+
+    & article.modal--delete {
+        display: flex;
+        flex-direction: column;
+        padding-block: 0.25rem;
+        padding-inline: 0.5rem;
+
+        & p {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        & div {
+            display: flex;
+            gap: 0.5rem;
+
+            & button {
+                text-transform: uppercase;
+                padding: 0.5rem 0.75rem;
+                border-color: transparent;
+                outline-color: transparent;
+
+                &.button__delete {
+                    color: var(--color-delete);
+                }
+
+                &:hover {
+                    border: 1px solid var(--main-txt-color);
+                }
+            }
+        }
+    }
+
+    & form.login-modal {
+        padding: 0.75rem 0.5rem;
+
+        & div.form-row {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 0.5rem;
+
+            &.form-row__error {
+                color: var(--color-error);
+            }
+
+            & input {
+                line-height: 1.5rem;
+                border: 1px solid var(--secondary-bg-color);
+                border-radius: 0.25rem;
+                outline: transparent;
+                padding-left: 0.25rem;
+                transition: all 0.25s;
+
+                &:active,
+                &:focus,
+                &:focus-within {
+                    outline: 1px solid var(--secondary-bg-color);
+                    box-shadow: var(--box-shadow-primary);
+                }
+
+                &:disabled {
+                    opacity: 0.7;
+                }
+            }
+        }
+
+        & .login--actions {
+            margin-top: 1.5rem;
+            margin-bottom: 0.125rem;
+            display: flex;
+            gap: 0.5rem;
+
+            & button {
+                text-transform: uppercase;
+                padding: 0.5rem 0.75rem;
+                border-color: transparent;
+                outline-color: transparent;
+
+                &[type='submit'] {
+                    font-weight: bold;
+                }
+
+                &:hover {
+                    border: 1px solid var(--main-txt-color);
+                }
+
+                &:disabled {
+                    opacity: 0.7;
+                }
+            }
+        }
+    }
+}
+
+/*
+    Image loading animation must not be nested, 
+    otherwise it doesn't run on Chrome v 120.0.6099.71
+    with CSS nesting
+*/
+@keyframes load-img {
+    to {
+        background-position-x: -20%;
+    }
+}
+
+/*
+    Movie card appear animation must not be nested, 
+    otherwise it doesn't run on Chrome v 120.0.6099.71
+    with CSS nesting
+*/
+@keyframes movie-appear {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*
+    Movie card appear animation must not be nested, 
+    otherwise it doesn't run on Chrome v 120.0.6099.71
+    with CSS nesting
+*/
+@keyframes loading-ellipsis {
+    0%   { content: ''; }
+    25%  { content: '.'; }
+    50%  { content: '..'; }
+    75%  { content: '...'; }
+    100% { content: ''; }
+}
+
+#root {
+    footer {
+        height: var(--footer-height);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        & nav ul {
+            display: flex;
+            gap: 1rem;
+            
+            & a {
+                text-decoration: none;
+                color: var(--main-txt-color);
+
+                & div {
+                    display: flex;
+                    gap: 0.25rem;
+                    text-transform: capitalize;
+
+                    svg {
+                        height: 1.5rem;
+                        width: 1.5rem;
+                        transition: all 0.3s;
+                    }
+
+                    @media screen and (width <= 600px) { /* --breakpoint-mobile */
+                        p {
+                            display: none;
+                        }
+                    }
+                }
+
+                &:hover {
+                    svg {
+                        filter: drop-shadow(0 0 2px var(--main-txt-color));
+                    }
+                }
+            }
+        }
+    }
+}

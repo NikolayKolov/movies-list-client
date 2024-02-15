@@ -1,0 +1,21 @@
+[
+    {
+        "href": "/",
+        "text": "home",
+        "visibilityGuest": true,
+        "visibilityUser": true
+    },
+    {
+        "href": "/movie/create",
+        "text": "add movie",
+        "visibilityGuest": false,
+        "visibilityUser": true
+    },
+    {
+        "href": "auth",
+        "text": "log in",
+        "visibilityGuest": true,
+        "visibilityUser": true,
+        "styling": "action"
+    }
+]
